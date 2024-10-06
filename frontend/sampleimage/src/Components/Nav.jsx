@@ -14,7 +14,7 @@ function Nav() {
   return (
     <div>
       <div className="topbar">
-        <navbar class="navbar">
+        <navbar className="navbar">
           {/* <div class="logo">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/H-E-B_logo.svg/1024px-H-E-B_logo.svg.png" alt="HEB Logo"/>
         </div> */}
@@ -22,7 +22,7 @@ function Nav() {
             {/* <FontAwesomeIcon icon="fa-solid fa-house" />   */}
 
             <span>
-            <i className="faHouse"></i>
+            <i className="fas fa-House"></i>
               {/* //<FontAwesomeIcon icon={faHouse} /> */}
             </span>
           </div>
