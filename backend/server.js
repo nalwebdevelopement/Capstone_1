@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const path = require('path');
 const imgctrl = require('./controllers/imgctrl.js')
+const authController = require('./controllers/Userctrl')
 const cors = require('cors')
 
 const connectDB = require('./config/db');
@@ -24,12 +25,9 @@ app.put('/notes/:id',imgctrl.updateProduct)
 app.delete('/notes/:id',imgctrl.deleteProduct)
 // -->Retrieve all note in DB
 
-
-
-
-
-
-
+// Auth Routes
+app.post('/register', authController.registerUser);
+app.post('/login', authController.loginUser);
 
 
 
