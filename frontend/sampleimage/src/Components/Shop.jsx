@@ -44,16 +44,21 @@ const Shop = ({ onLogout }) => {
     <div>
       {/* <Nav /> */}
       <div className="top-bar" >
+      <img
+              src="https://media4.giphy.com/media/fYNSIDot0a7AZuDWhl/giphy.gif?cid=6c09b952g58wltijf7vccg44h6eqaxgv7pcz483j28l4nfk4&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+              alt="img-main"
+              style={{ width: "100px", height: "100px", borderRadius: "50%" }}
+            />
       { console.log(`username:,${user.username}`)}
-      <h2>Welcome, {user.username}! Feel free to browse the products.</h2>
+      <h1 className="heading">Welcome, {user.username}! Feel free to browse the products.</h1>
       <button className="logout-button" onClick={onLogout}>
         Logout
       </button>
       </div>
       <div className="menu-buttons">
-        <button onClick={() => handleMenuClick('fruits')}>Fruits</button>
-        <button onClick={() => handleMenuClick('vegetables')}>Vegetables</button>
-        <button onClick={() => handleMenuClick('all')}>All</button>
+        <button className ="menu-buttons1" onClick={() => handleMenuClick('fruits')}>Fruits</button>
+        <button className ="menu-buttons1" onClick={() => handleMenuClick('vegetables')}>Vegetables</button>
+        <button className ="menu-buttons1" onClick={() => handleMenuClick('all')}>All</button>
       </div>
       <ProductList products={filteredProducts} />
     

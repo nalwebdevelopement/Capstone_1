@@ -28,8 +28,6 @@ const Login = ({ onLogin }) => {
 
      
       setUser({ username, role });
-
-     
       onLogin(role);
 
       

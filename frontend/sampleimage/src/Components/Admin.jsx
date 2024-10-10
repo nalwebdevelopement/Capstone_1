@@ -74,7 +74,11 @@ const Admin = ({ onLogout }) => {
   return (
     <div className="admin-container">
       <h1>Product Management</h1>
+      
       <ProductForm onSubmit={handleCreateOrUpdate} selectedProduct={selectedProduct} />
+      <button className="logout-button" onClick={onLogout}>
+        Logout
+      </button>
       <ProductList
         products={products}
         onEdit={handleEdit}

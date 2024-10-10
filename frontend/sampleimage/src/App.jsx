@@ -16,13 +16,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState('');
 
-  // Handle login by setting authentication state and user role
+  // Login
   const handleLogin = (role) => {
     setIsLoggedIn(true);
     setUserRole(role);
   };
 
-  // Handle logout by resetting authentication state and user role
+  //Logout
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUserRole('');
