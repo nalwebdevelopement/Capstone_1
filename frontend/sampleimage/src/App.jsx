@@ -9,6 +9,7 @@ import Login from './Components/Login';
 import Shop from './Components/Shop';
 import Admin from './Components/Admin';
 import './App.css';
+import { UserProvider } from '../src/Components/UserContext';
 
 function App() {
   // State to manage authentication and user role
@@ -29,11 +30,12 @@ function App() {
 
   return (
     <div className="main">
+       <UserProvider>
       <Routes>
-        {/* Public Route: Login Page */}
+      
         <Route path="/" element={<Login onLogin={handleLogin} />} />
 
-        {/* Protected Route: Shop Page for Customers */}
+       
         <Route
           path="/shop"
           element={
@@ -45,7 +47,7 @@ function App() {
           }
         />
 
-        {/* Protected Route: Admin Page */}
+       
         <Route
           path="/admin"
           element={
@@ -57,9 +59,9 @@ function App() {
           }
         />
 
-        {/* Catch-all Route: Redirect to Login */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      </UserProvider>
     </div>
   );
 }

@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Nav from './Nav';
 import axios from 'axios';
 import ProductList from './ProductList';
+import { UserContext } from './UserContext';
 
 const Shop = ({ onLogout }) => {
   const [products, setProducts] = useState([]);
-  const [selectedMenu, setSelectedMenu] = useState('all'); // Default to 'all'
+  const [selectedMenu, setSelectedMenu] = useState('all'); 
 
-  // Fetch products from the backend
+  
+  const { user } = useContext(UserContext);
+  console.log(user);
+  
   const fetchProducts = async () => {
     try {
       const response = await axios.get('http://localhost:3000/notes', {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // Include JWT if needed
+          Authorization: `Bearer ${localStorage.getItem('token')}`, 
         },
       });
       setProducts(response.data.productdetails);
@@ -21,12 +25,12 @@ const Shop = ({ onLogout }) => {
     }
   };
 
-  // Handle menu button clicks to filter products
+ 
   const handleMenuClick = (menu) => {
     setSelectedMenu(menu);
   };
 
-  // Filter products based on selected menu
+  
   const filteredProducts =
     selectedMenu === 'all'
       ? products
@@ -38,17 +42,21 @@ const Shop = ({ onLogout }) => {
 
   return (
     <div>
-      <Nav />
-      <h2>Welcome, Customer! Feel free to browse the products.</h2>
+      {/* <Nav /> */}
+      <div className="top-bar" >
+      { console.log(`username:,${user.username}`)}
+      <h2>Welcome, {user.username}! Feel free to browse the products.</h2>
+      <button className="logout-button" onClick={onLogout}>
+        Logout
+      </button>
+      </div>
       <div className="menu-buttons">
         <button onClick={() => handleMenuClick('fruits')}>Fruits</button>
         <button onClick={() => handleMenuClick('vegetables')}>Vegetables</button>
         <button onClick={() => handleMenuClick('all')}>All</button>
       </div>
       <ProductList products={filteredProducts} />
-      <button className="logout-button" onClick={onLogout}>
-        Logout
-      </button>
+    
     </div>
   );
 };

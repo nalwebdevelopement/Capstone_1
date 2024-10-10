@@ -1,30 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from './UserContext';
 
 const Login = ({ onLogin }) => {
-  // Local state for form inputs
+  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   // Initialize useNavigate hook
   const navigate = useNavigate();
 
+  
+  const { setUser } = useContext(UserContext);
+
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent form submission reload
+    e.preventDefault(); 
     try {
       const response = await axios.post('http://localhost:3000/login', {
         username,
         password,
       });
+      console.log(response.data)
       const { token, role } = response.data;
 
-      // Optionally, store the token for authenticated requests
+      
       localStorage.setItem('token', token);
 
-      // Update parent component with login status and role
+     
+      setUser({ username, role });
+
+     
       onLogin(role);
 
-      // Navigate based on role
+      
       if (role === 'customer') {
         navigate('/shop');
       } else if (role === 'admin') {
@@ -37,7 +45,14 @@ const Login = ({ onLogin }) => {
   };
 
   return (
+    <div className="maincontainer-img">
+      <img
+              src="https://images.hebcdn.com/9E1HTV21/at/mfwssvmt4ckfgh4bwzp4h3mq/100924-seasonal-produce-desktop-hero-1376x300.jpg?auto=webp&format=jpg&max_age=2592000&optimize=high&width=2752"
+              alt="img-main"
+              style={{ width: "100%", height: "500px" }}
+            />
     <div className="login-container">
+       
         <img
               src="https://media4.giphy.com/media/fYNSIDot0a7AZuDWhl/giphy.gif?cid=6c09b952g58wltijf7vccg44h6eqaxgv7pcz483j28l4nfk4&ep=v1_gifs_search&rid=giphy.gif&ct=g"
               alt="img-main"
@@ -66,7 +81,10 @@ const Login = ({ onLogin }) => {
           />
         </div>
         <button type="submit">Login</button>
+        
       </form>
+      <p> Register</p>
+    </div>
     </div>
   );
 };
